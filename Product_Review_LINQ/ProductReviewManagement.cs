@@ -54,6 +54,20 @@ namespace Product_Review_LINQ
             }
             return list;
         }
+
+        //retrieve records based on rating and product ID
+        public static List<string> RetrieveRecordsBasedOnRatingAndProductId(List<ProductReview> products)
+        {
+            List<string> list = new List<string>();
+            var result = (from product in products where product.rating > 3 && (product.productId == 1 || product.productId == 4 || product.productId == 9) select product).ToList();
+            DisplayList(result);
+            foreach (var mem in result)
+            {
+                list.Add(mem.productId + " " + mem.userId + " " + mem.review + " " + mem.rating + " " + mem.isLike);
+            }
+            return list;
+        }
+
         /// Display the details in list
         public static void DisplayList(List<ProductReview> products)
         {

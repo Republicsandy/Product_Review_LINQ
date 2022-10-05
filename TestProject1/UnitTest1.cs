@@ -20,5 +20,13 @@ namespace TestProject1
             var expected = new List<int>(temp);
             CollectionAssert.AreEqual(expected, actual);
         }
+        [Test]
+        public void TestMethodForRetrieveBasedonProductIdandRating()
+        {
+            List<string> actual = ProductReviewManagement.RetrieveRecordsBasedOnRatingAndProductId(productreview);
+            string[] temp = { "1 1 Nice 5 True", "4 7 Nice 5 True", "4 4 Average 4 True" };
+            var expected = new List<string>(temp);
+            CollectionAssert.AreEqual(expected, actual);
+        }
     }
 }
