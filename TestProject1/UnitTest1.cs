@@ -10,13 +10,15 @@ namespace TestProject1
         [SetUp]
         public void Setup()
         {
-            productreview = ProjectReviewManagement.GetProductReviewList();
+            productreview = ProductReviewManagement.GetProductReviewList();
         }
-
         [Test]
-        public void Test1()
+        public void TestMethodForRetrieveTopThreeRecord()
         {
-            Assert.Pass();
+            List<int> actual = ProductReviewManagement.RetrieveTopThreeRating(productreview);
+            int[] temp = { 1, 7, 2 };
+            var expected = new List<int>(temp);
+            CollectionAssert.AreEqual(expected, actual);
         }
     }
 }

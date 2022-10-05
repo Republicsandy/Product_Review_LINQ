@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Product_Review_LINQ
 {
-    public class ProjectReviewManagement
+    public class ProductReviewManagement
     {
         //Add details to list
         public static List<ProductReview> GetProductReviewList()
@@ -37,11 +37,25 @@ namespace Product_Review_LINQ
             products.Add(new ProductReview() { productId = 11, userId = 8, review = "Average", rating = 1, isLike = true });
             products.Add(new ProductReview() { productId = 3, userId = 9, review = "Bad", rating = 3, isLike = false });
             products.Add(new ProductReview() { productId = 5, userId = 4, review = "Average", rating = 1, isLike = true });
-            IterateThroughList(products);
+           // IterateThroughList(products);
             return products;
         }
         /// Display the details in list
-        public static void IterateThroughList(List<ProductReview> products)
+        //Retrieve top three records
+        public static List<int> RetrieveTopThreeRating(List<ProductReview> products)
+        {
+            List<int> list = new List<int>();
+            Console.WriteLine("Top Three Records Based On Rating");
+            var result = (from product in products orderby product.rating descending select product).Take(3).ToList();
+            DisplayList(result);
+            foreach (var mem in result)
+            {
+                list.Add(mem.userId);
+            }
+            return list;
+        }
+        /// Display the details in list
+        public static void DisplayList(List<ProductReview> products)
         {
             foreach (var product in products)
             {
